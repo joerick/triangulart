@@ -207,6 +207,35 @@ Triangulr.prototype.generateSVG = function (isClean) {
   return svgTag;
 }
 
+Triangulr.prototype.generatePNG = function () {
+  var svgTag = this.generateSVG();
+
+  // there are antialiasing lines (the background bleeds through) between the triangles
+  // without this.
+  // We super-sample by rendering at 4x to make up for it.
+  svgTag.setAttribute('shape-rendering', 'crispEdges');
+
+  var bigCanvas = document.createElement('canvas');
+  var bigImage = new Image;
+
+  bigImage.width  = bigCanvas.width  = 768;
+  bigImage.height = bigCanvas.height = 768;
+
+  bigImage.onload = function(){
+    bigCanvas.getContext('2d').drawImage(bigImage, 0, 0, bigImage.width, bigImage.height);
+
+    var smallCanvas = document.createElement('canvas');
+    smallCanvas.width = 192;
+    smallCanvas.height = 192;
+    smallCanvas.getContext('2d').drawImage(bigCanvas, 0, 0, 192, 192);
+
+    window.open(smallCanvas.toDataURL("image/png"), '_blank');
+  };
+
+  var svgXML = (new XMLSerializer).serializeToString(svgTag);
+  bigImage.src = 'data:image/svg+xml,' + encodeURIComponent(svgXML);
+}
+
 Triangulr.prototype.export = function () {
   return {
     isLandscape: this.isLandscape,
