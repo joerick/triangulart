@@ -25,6 +25,10 @@ button {
 }
 
 .playground {
+  width: 768px;
+  height: 768px;
+  margin: 20px;
+  overflow: hidden;
   background:
     linear-gradient( rgba(100, 100, 100, 0.70),
                      rgba(100, 100, 100, 0.70)),
@@ -36,7 +40,10 @@ button {
 /* Layout */
 .playground svg {
   cursor: crosshair;
-  margin: 1rem 1rem 80px;
+
+  position: relative;
+  top: -16px;
+  left: -8px;
 }
 
 .toolbar {

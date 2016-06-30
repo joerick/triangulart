@@ -148,22 +148,24 @@
     var playground, controller;
 
     function setup () {
-      var width  = document.getElementById('setup-width').value,
-          height = document.getElementById('setup-height').value,
-          triangleHeight = document.getElementById('setup-triangle-height').value,
-          isLandscape = document.getElementById('setup-orientation-landscape').checked;
+      // var width  = document.getElementById('setup-width').value,
+      //     height = document.getElementById('setup-height').value,
+      //     triangleHeight = document.getElementById('setup-triangle-height').value,
+      //     isLandscape = document.getElementById('setup-orientation-landscape').checked;
 
-      if (width < 1 || height < 1 || triangleHeight < 1) {
-        alert('Please set positive values');
-        return;
-      }
+      // if (width < 1 || height < 1 || triangleHeight < 1) {
+      //   alert('Please set positive values');
+      //   return;
+      // }
 
       document.getElementById('setup').remove();
 
       playground = new Triangulr('playground');
-      playground.setCanvas(width, height, triangleHeight, isLandscape);
+      playground.setCanvas(28, 25, 32, false);
       controller = new Toolbar(playground);
     }
+
+    setup()
 
     // Prevent quit
     window.onbeforeunload = function() {
