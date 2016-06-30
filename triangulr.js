@@ -207,7 +207,7 @@ Triangulr.prototype.generateSVG = function (isClean) {
   return svgTag;
 }
 
-Triangulr.prototype.generatePNG = function () {
+Triangulr.prototype.generatePNG = function (callback) {
   var svgTag = this.generateSVG();
 
   // there are antialiasing lines (the background bleeds through) between the triangles
@@ -216,7 +216,7 @@ Triangulr.prototype.generatePNG = function () {
   svgTag.setAttribute('shape-rendering', 'crispEdges');
 
   var bigCanvas = document.createElement('canvas');
-  var bigImage = new Image;
+  var bigImage = new Image();
 
   bigImage.width  = bigCanvas.width  = 768;
   bigImage.height = bigCanvas.height = 768;
@@ -229,7 +229,7 @@ Triangulr.prototype.generatePNG = function () {
     smallCanvas.height = 192;
     smallCanvas.getContext('2d').drawImage(bigCanvas, 0, 0, 192, 192);
 
-    window.open(smallCanvas.toDataURL("image/png"), '_blank');
+    callback(smallCanvas.toDataURL('image/png'));
   };
 
   var svgXML = (new XMLSerializer).serializeToString(svgTag);

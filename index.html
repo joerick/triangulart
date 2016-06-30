@@ -11,45 +11,6 @@
 </head>
 <body>
 
-  <div class="setup" id="setup">
-    <div class="form">
-      <h1>Triangulart</h1>
-      <p>This is a silly graphic editor build in JavaScript to create isometric illustrations. Triangulart is like pixel art but for triangles.<br><i>This webapp does not work with touchscreen devices, for now.</i></p>
-      <hr>
-      <div class="field">
-        <label for="setup-width">Map width</label>
-        <input type="number" id="setup-width" value="30" min="1"/>
-      </div>
-
-      <div class="field">
-        <label for="setup-width">Map height</label>
-        <input type="number" id="setup-height" value="20" min="1"/>
-      </div>
-
-      <div class="field">
-        <label for="setup-width">Triangle height (in pixels)</label>
-        <input type="number" id="setup-triangle-height" value="30" min="1"/>
-      </div>
-
-      <div class="field-orientation">
-        <label for="setup-orientation-landscape">
-          <input type="radio" name="oriantation" id="setup-orientation-landscape" value="landscape" checked="checked"/>
-          <svg alt="Orientation landscape" width="120" height="90">
-            <use xlink:href="#grid-landscape"></use>
-          </svg>
-        </label>
-        <label for="setup-orientation-portrait">
-          <input type="radio" name="oriantation" id="setup-orientation-portrait" value="portrait"/>
-          <svg alt="Orientation portrait" width="120" height="90">
-            <use xlink:href="#grid-portrait"></use>
-          </svg>
-        </label>
-      </div>
-
-      <button class="button-group" onclick="setup()">Start</button>
-    </div>
-  </div>
-
   <!-- SVG to display -->
   <div class="playground" id="playground"></div>
 
@@ -80,7 +41,11 @@
       <div class="button-group">
         <button type="button" onclick="controller.exportSVG();">export (SVG)</button>
       </div>
+      <div class="button-group">
+        <button type="button" onclick="controller.previewPNG();">render PNG</button>
+      </div>
     </div>
+    <img id="preview-image" class="preview-image">
   </div>
 
 
@@ -148,18 +113,6 @@
     var playground, controller;
 
     function setup () {
-      // var width  = document.getElementById('setup-width').value,
-      //     height = document.getElementById('setup-height').value,
-      //     triangleHeight = document.getElementById('setup-triangle-height').value,
-      //     isLandscape = document.getElementById('setup-orientation-landscape').checked;
-
-      // if (width < 1 || height < 1 || triangleHeight < 1) {
-      //   alert('Please set positive values');
-      //   return;
-      // }
-
-      document.getElementById('setup').remove();
-
       playground = new Triangulr('playground');
       playground.setCanvas(28, 25, 32, false);
       controller = new Toolbar(playground);

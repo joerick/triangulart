@@ -3,6 +3,7 @@ function Toolbar (playground) {
   this.colorInput = document.getElementById('color-picker');
   this.colorList  = document.getElementById('color-list');
   this.outlineStyle = document.getElementById('outline-style');
+  this.imagePreview = document.getElementById('preview-image');
   this.isOutlineOn = true;
   this.palette = [];
 
@@ -61,6 +62,13 @@ Toolbar.prototype.save = function () {
 
 Toolbar.prototype.exportSVG = function () {
   this.saveFile(this.playground.exportSVG(), 'artwork.svg');
+};
+
+Toolbar.prototype.previewPNG = function () {
+  this.playground.generatePNG(function (dataURL) {
+    console.log(dataURL);
+    this.imagePreview.src = dataURL;
+  }.bind(this));
 };
 
 /**
