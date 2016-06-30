@@ -14,7 +14,7 @@ function Triangulr (containerId) {
 }
 
 Triangulr.prototype.DEFAULT_COLOR = '#000';
-Triangulr.prototype.BLANK_COLOR = '#FFF';
+Triangulr.prototype.BLANK_COLOR = 'transparent';
 
 /**
  * Triangulr class

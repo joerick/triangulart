@@ -24,6 +24,15 @@ button {
   cursor: pointer;
 }
 
+.playground {
+  background:
+    linear-gradient( rgba(100, 100, 100, 0.70),
+                     rgba(100, 100, 100, 0.70)),
+    url(bg3.png);
+  background-size: 56px;
+  background-position: -8px 0px;
+}
+
 /* Layout */
 .playground svg {
   cursor: crosshair;
