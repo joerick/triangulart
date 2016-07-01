@@ -59,8 +59,8 @@ Triangulr.prototype.lineMapping = function () {
       line = [];
       for(x = 0; x<=this.mapWidth; x++) {
         line.push({
-          x: x * this.triangleWidth + parity + gap,
-          y: y * this.triangleHeight
+          x: x * this.triangleWidth + parity + gap - this.triangleWidth/2,
+          y: y * this.triangleHeight - this.triangleWidth/4
         });
       }
       this.lines.push(line);
@@ -72,8 +72,8 @@ Triangulr.prototype.lineMapping = function () {
       line = [];
       for(x = 0; x<=this.mapHeight; x++) {
         line.push({
-          x: y * this.triangleHeight,
-          y: x * this.triangleWidth + parity + gap
+          x: y * this.triangleHeight - this.triangleWidth/4,
+          y: x * this.triangleWidth + parity + gap - this.triangleWidth/2
         });
       }
       this.lines.push(line);
@@ -179,16 +179,20 @@ Triangulr.prototype.generateSVG = function (isClean) {
   svgTag.setAttribute('version', '1.1');
   svgTag.setAttribute('preserveAspectRatio', 'xMinYMin slice');
 
+  var width, height;
+
   if (this.isLandscape) {
-    svgTag.setAttribute('width', this.mapWidth * this.triangleWidth);
-    svgTag.setAttribute('height', this.mapHeight * this.triangleHeight);
-    svgTag.setAttribute('viewBox', '0 0 ' + (this.mapWidth * this.triangleWidth) + ' ' + (this.mapHeight * this.triangleHeight));
+    width = (this.mapWidth - 1.0) * this.triangleWidth;
+    height = (this.mapHeight - 0.5) * this.triangleHeight;
   }
   else {
-    svgTag.setAttribute('width', this.mapWidth * this.triangleHeight);
-    svgTag.setAttribute('height', this.mapHeight * this.triangleWidth);
-    svgTag.setAttribute('viewBox', '0 0 ' + (this.mapWidth * this.triangleHeight) + ' ' + (this.mapHeight * this.triangleWidth));
+    width = (this.mapWidth - 0.5) * this.triangleHeight;
+    height = (this.mapHeight - 1.0) * this.triangleWidth;
   }
+
+  svgTag.setAttribute('width', width);
+  svgTag.setAttribute('height', height);
+  svgTag.setAttribute('viewBox', '0 0 ' + width + ' ' + height);
 
   for(i in this.exportData) {
     data = this.exportData[i];

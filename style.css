@@ -41,10 +41,6 @@ button {
 /* Layout */
 .playground svg {
   cursor: crosshair;
-
-  position: relative;
-  top: -16px;
-  left: -8px;
 }
 
 .toolbar {
