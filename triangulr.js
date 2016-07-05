@@ -131,6 +131,26 @@ Triangulr.prototype.createTriangles = function () {
   }
 };
 
+Triangulr.prototype.shift = function (down, right) {
+  var newExportData = [];
+
+  for (var i = 0; i < this.exportData.length; i++) {
+    newExportData[i] = {};
+    newExportData[i].points = this.exportData[i].points;
+
+    var colorSrcIndex = i - down*2 - (right*2*(this.lines[0].length - 1));
+
+    if (colorSrcIndex < 0 || colorSrcIndex >= this.exportData.length) {
+      newExportData[i].color = this.BLANK_COLOR;
+    } else {
+      newExportData[i].color = this.exportData[colorSrcIndex].color;
+    }
+
+    this.svgTag.childNodes[i].setAttribute('fill', newExportData[i].color || this.BLANK_COLOR);
+  }
+  this.exportData = newExportData;
+}
+
 /**
  * generateDom
  * generate the SVG object from exportData content

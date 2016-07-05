@@ -18,6 +18,33 @@ function Toolbar (playground) {
   this.downloadAnchor = document.createElement('a');
   this.downloadAnchor.style = 'display: none';
   document.body.appendChild(this.downloadAnchor);
+
+  document.onkeydown = function(e) {
+    var isArrowKey = 37 <= e.keyCode && e.keyCode <= 40;
+
+    if (isArrowKey) {
+      switch (e.keyCode) {
+          case 37:
+              // left arrow key
+              this.playground.shift(0, -1);
+              break;
+          case 38:
+              // up arrow key
+              this.playground.shift(-1, 0);
+              break;
+          case 39:
+              // right arrow key
+              this.playground.shift(0, 1);
+              break;
+          case 40:
+              // down arrow key
+              this.playground.shift(1, 0);
+              break;
+      }
+
+      e.preventDefault();
+    }
+  }.bind(this);
 }
 
 Toolbar.prototype.load = function () {
