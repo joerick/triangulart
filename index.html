@@ -35,17 +35,25 @@
       <div class="button-group">
         <button type="button" onclick="controller.toggleOutline();">outline</button>
       </div>
+      <br>
       <div class="button-group">
-        <button type="button" onclick="controller.load();">load</button><button type="button" onclick="controller.save();">save</button>
+        <button type="button" onclick="controller.load();">load JSON</button><button type="button" onclick="controller.save();">save JSON</button>
       </div>
+      <br>
       <div class="button-group">
         <button type="button" onclick="controller.exportSVG();">export (SVG)</button>
       </div>
+      <br>
       <div class="button-group">
         <button type="button" onclick="controller.previewPNG();">render PNG</button>
       </div>
+      <br>
+      <div class="spacer" style="height: 10px"></div>
+      <img id="preview-image" class="preview-image">
+      <p style="font-size: 14px; color: #aaa; max-width: 192px">
+        To download, 'Render PNG', then ⬆️ Right-click and 'Save Image as…' to download
+      </p>
     </div>
-    <img id="preview-image" class="preview-image">
   </div>
 
 
